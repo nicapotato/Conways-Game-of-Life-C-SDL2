@@ -8,7 +8,12 @@
 #include <stdio.h>
 #include <time.h>
 
-#define SDL_FLAGS SDL_INIT_EVERYTHING
+#ifdef WASM_BUILD
+#include <emscripten.h>
+#include <emscripten/html5.h>
+#endif
+
+#define SDL_FLAGS (SDL_INIT_VIDEO | SDL_INIT_AUDIO)
 #define IMG_FLAGS IMG_INIT_PNG
 #define RENDERER_FLAGS SDL_RENDERER_ACCELERATED
 
