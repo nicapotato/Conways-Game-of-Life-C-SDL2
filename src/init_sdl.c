@@ -30,6 +30,7 @@ bool game_init_sdl(struct Game *g) {
         return false;
     }
 
+#ifndef WASM_BUILD
     SDL_Surface *icon_surf = IMG_Load("images/icon.png");
     if (!icon_surf) {
         fprintf(stderr, "Error loading SDL_Surface. %s\n", IMG_GetError());
@@ -38,6 +39,7 @@ bool game_init_sdl(struct Game *g) {
     SDL_SetWindowIcon(g->window, icon_surf);
     SDL_FreeSurface(icon_surf);
     icon_surf = NULL;
+#endif
 
     return true;
 }
